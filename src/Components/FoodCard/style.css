@@ -1,0 +1,78 @@
+/* src/components/Card.css */
+/* .card {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+  } */
+
+  /* ------------------------------ */
+
+  
+  .food-item {
+    background-color: #e8e8e8be;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 8px;
+    margin-top: 20px;
+  }
+  
+  .food-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 46px;
+  }
+  
+  .food-header h2 {
+    margin: 0;
+  }
+  
+  .food-amount {
+    font-weight: bold;
+    font-size: 16px;
+  }
+  
+  .person-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+
+  }
+
+  .person-item hr {
+    height: 1.5px;
+    border: none;
+    background-color: rgba(128, 128, 128, 0.339);
+  }
+  
+  .person-details {
+    display: flex;
+    justify-content: space-between;
+    /* align-items: center;
+    height: 36px; */
+  }
+  
+  .person-details h3 {
+    margin: 0;
+  }
+  
+  .person-details p {
+    margin: 0;
+  }
+  
+  .price-details {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+  
+  .price-details p {
+    margin: 0;
+  }
+  
+  .paid-amount {
+    font-size: 14px;
+  }

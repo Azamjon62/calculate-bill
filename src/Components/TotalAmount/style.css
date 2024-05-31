@@ -1,0 +1,22 @@
+.total-amount {
+    border-radius: 5px;
+    padding: 16px;
+    margin: 25px 10px -10px 10px; 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #e8e8e8be;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .total-amount h2 {
+    margin: 0 0 8px 0;
+    font-size: 1.5em;
+  }
+  
+  .total-amount p {
+    margin: 0;
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+  

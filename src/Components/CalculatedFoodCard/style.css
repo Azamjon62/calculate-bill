@@ -1,0 +1,96 @@
+.wrapper {
+    padding: 10px;
+    margin-top: 20px;
+}
+  
+  .person-container {
+    background-color: #e8e8e8be;
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 20px;
+  }
+  
+  .person-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 56px;
+  }
+
+  .person-header p {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .person-header p span {
+    font-size: 25px;
+  }
+  
+  .icon {
+    text-align: center;
+  }
+  
+  .calFood-item {
+    margin-top: 15px;
+    margin-bottom: 10px;
+  }
+  .calFood-item hr {
+    height: 1.5px;
+    border: none;
+    background-color: rgba(128, 128, 128, 0.339);
+  }
+  
+  .calFood-details {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    margin-bottom: 10px;
+  }
+  
+  .calFood-price {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+  
+  .text-sm {
+    font-size: 0.875rem;
+  }
+  
+  
+
+  .heading {
+    margin-top: 50px;
+  }
+  
+  .paid-container {
+    background-color: #e8e8e8be;
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 20px;
+  }
+  
+  .item {
+    margin-top: 15px;
+  }
+
+  .item hr {
+    height: 1.5px;
+    border: none;
+    background-color: rgba(128, 128, 128, 0.339);
+  }
+  
+  .item-details {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+  }
+
+  .item-details p:nth-child(2) {
+    display: flex;
+    align-items: center;
+
+  }
+  
+
+  

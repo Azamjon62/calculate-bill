@@ -1,23 +1,61 @@
 import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginUserStart } from '../../Slice/auth';
+import { loginUserFailure, loginUserStart, loginUserSuccess } from '../../Slice/auth';
 import { Input } from '../../Components/Ui';
 import { useState } from 'react';
+import { generateToken } from "../../Utils/generateToken";
+import AuthService from '../../Service/auth';
+import { SharedStateContext } from '../../Components/SharedStateContext';
 
 import "./style.css";
 
 const LoginPage = () => {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
+  // const [token, setToken] = useState('');
   const dispatch = useDispatch()
   const { isLoading } = useSelector((state) => state.auth);
   const navigate = useNavigate();
-  
 
-  const handleSubmit = (e) => {
+  const {
+    token, setToken
+  } = useContext(SharedStateContext);
+
+  const allowAskingNotification = () => {
+    generateToken(setToken)
+  }
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    navigate('/main');
     dispatch(loginUserStart());
+
+    const data = {
+      name,
+      password,
+      token,
+      signedIn: true,
+      createdAt: new Date().toISOString(),
+    };
+
+    try {
+      const response = await AuthService.userSignIn({
+        collectionName: 'users',
+        data: data
+      });
+
+      if (response.status === 200) {
+        console.log('Document ID', response.data.id);
+      } else {
+        console.error('Error:', response);
+      }
+
+      dispatch(loginUserSuccess(response.data));
+    } catch (error) {
+      dispatch(loginUserFailure(error.response.data.errors));
+    }
+
+    navigate('/main');
   };
 
   return (
@@ -43,8 +81,8 @@ const LoginPage = () => {
 
             <div className="flex-row">
               <div>
-                <input type="checkbox" />
-                <label>Remember me </label>
+                <input type="checkbox" onChange={allowAskingNotification} required />
+                <label>Allow to asking notification </label>
               </div>
               <span className="span">Forgot password?</span>
             </div>

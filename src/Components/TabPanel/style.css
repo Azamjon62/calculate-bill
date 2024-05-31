@@ -1,0 +1,60 @@
+/* src/TabPanel.css */
+.tab-panel {
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+  }
+  
+  .tabs {
+    height: 60px;
+    display: flex;
+    justify-content: space-around;
+    /* margin-bottom: 10px; */
+    background: rgba(128, 128, 128, 0.14);
+  }
+  
+  .tab {
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+    background: none;
+    outline: none;
+    font-size: 16px;
+    transition: background 0.3s ease;
+  }
+  
+  .tab.active {
+    border-bottom: 2px solid #007bff;
+    font-weight: bold;
+  }
+  
+  .panels {
+    position: relative;
+    height: 100%; /* Adjust based on your content */
+    /* overflow: hidden; */
+    /* background: gold; */
+  }
+  
+  .panel {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease, left 0.5s ease;
+  }
+  
+  .panel.active {
+    left: 0;
+    opacity: 1;
+  }
+  
+  .panel:not(.active) {
+    left: -100%;
+    opacity: 0;
+  }
+
+  .panelBtn {
+    padding: 10px;
+  }
+  
