@@ -46,11 +46,13 @@ const LoginPage = () => {
 
       if (response.status === 200) {
         console.log('Document ID', response.data.id);
+        dispatch(loginUserSuccess(response.data));
+        navigate('/main');
       } else {
         console.error('Error:', response);
+        dispatch(loginUserFailure(response.data.errors));
       }
 
-      dispatch(loginUserSuccess(response.data));
     } catch (error) {
       dispatch(loginUserFailure(error.response.data.errors));
     }
@@ -87,9 +89,6 @@ const LoginPage = () => {
               <span className="span">Forgot password?</span>
             </div>
             <button disabled={isLoading} type='submit' className="button-submit"> {isLoading ? 'Loading...' : 'Sign In'} </button>
-            <p className="p">
-              Dont have an account? <span className="span">Sign Up</span>
-            </p>
           </form>
         </div>
       </div>

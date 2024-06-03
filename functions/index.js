@@ -52,36 +52,27 @@ exports.addDataToFirestore = functions.https.onRequest(async (req, res) => {
 });
 
 
-exports.sendNotification = functions.firestore
-    .document("users/{userId}")
+exports.sendNotification = functions.firestore.document("users/{userId}")
     .onCreate(async (snapshot, context) => {
     // Get the new user data from the snapshot
       const newUser = snapshot.data();
+      const token = newUser.token;
 
-      try {
-      // Retrieve all user tokens from the Firestore 'users' collection
-        const tokensSnapshot = await db.collection("users")
-            .where("signedIn", "==", true)
-            .get();
-        const tokens = tokensSnapshot.docs.map((doc) => doc.data().token).filter(Boolean);
+      if (token) {
+        const payload = {
+          notification: {
+            title: "Welcome!",
+            body: `Hello ${newUser.name || "User"}, you have successfully signed in!`,
+          },
+        };
 
-        if (tokens.length > 0) {
-        // Construct the notification payload
-          const payload = {
-            notification: {
-              title: "Successfully signed",
-              body: `Welcome: ${newUser.name || "Unnamed"}`, // Use the new user's name or a default value
-            },
-          };
-
-          // Send notifications to all tokens
-          const response = await admin.messaging().sendToDevice(tokens, payload);
-
-          console.log("Notifications sent successfully:", response);
-        } else {
-          console.log("No tokens available to send notifications");
+        try {
+          const response = await admin.messaging().sendToDevice(token, payload);
+          console.log("Notification sent successfully:", response);
+        } catch (error) {
+          console.error("Error sending notification:", error);
         }
-      } catch (error) {
-        console.error("Error sending notifications:", error);
+      } else {
+        console.log("No token available for the new user");
       }
     });
